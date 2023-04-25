@@ -13,9 +13,9 @@ class ButtonDialog(Dialog):
         super().__init__(title)
 
         _button1 = CheckBoxButton('Simple', (90,14), (10, 10))
-        _button1.on_click = self.on_click
+        _button1.on_click = lambda: self.on_click(_button1)
         _button2 = CheckBoxButton('Three state check box', (90,14), (10, 30), three_state=True)
-        _button2.on_click = self.on_click
+        _button2.on_click = lambda: self.on_click(_button2)
 
         _button3 = GroupBox('Group Box 1', (160, 30), (10, 50))
         # _button3a starts a new group of radio buttons,
@@ -33,7 +33,7 @@ class ButtonDialog(Dialog):
 
         _button6 = Button('Default push button', (80,22), (90,130))
         _button6.set_default()
-        _button6.on_click = self.on_click
+        _button6.on_click = lambda: self.on_click(_button6)
 
         _button7 = CommandButton('Command link', (100,26), (10,160))
 
@@ -49,8 +49,8 @@ class ButtonDialog(Dialog):
     def on_close(self):
         self.terminate()
 
-    def on_click(self):
-        print("button clicked")
+    def on_click(self, btn):
+        print(f"button clicked: {self} {btn.name}")
 
 
 class LabelDialog(Dialog):
@@ -80,6 +80,7 @@ class ComboBoxDialog(Dialog):
         self.cb2.on_selchange = self.on_selchange2
 
         self.add_controls([self.cb1, self.cb2])
+        self.on_selchange()
         self.show()
 
     def on_selchange(self):
@@ -92,7 +93,9 @@ class ComboBoxDialog(Dialog):
                 self.cb2.update(['301', '301', '302',])
 
     def on_selchange2(self):
-        print(self.cb1.items[self.cb1.get_selected_item()])
+        s1 = self.cb1.items[self.cb1.get_selected_item()]
+        s2 = self.cb2.items[self.cb2.get_selected_item()]
+        print(f"selected {s1}.{s2}\n")
 
 
 ButtonDialog()

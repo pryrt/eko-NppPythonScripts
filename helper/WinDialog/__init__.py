@@ -91,7 +91,7 @@ class Dialog():
         return False
 
     def add_controls(self, controls=[]):
-        self.control_list = controls
+        self.control_list += controls
 
     def show(self):
         self.__create_dialog()
