@@ -3,7 +3,7 @@ from WinDialog import (
     Dialog,
     Button, CheckBoxButton, GroupBox, CommandButton, RadioButton,
     SimpleLabel, TruncatedLabel, BlackFramedLabel, CenteredLabel, RigthAlignedLabel,
-    ComboBox,
+    ComboBox, EditBox
 )
 
 console.show()
@@ -63,8 +63,10 @@ class LabelDialog(Dialog):
         _label4 = SimpleLabel('Label within black frame', (90,14), (15, 60))
         _label6 = CenteredLabel('Centered label', (90, 14), (10, 90))
         _label7 = RigthAlignedLabel('Right alligned label', (90, 14), (10, 110))
+        
+        _edit1 = EditBox('Default EditBox', (120,28), (10,130))
 
-        self.add_controls([ _label1, _label2, _label3, _label4,  _label6, _label7 ])
+        self.add_controls([ _label1, _label2, _label3, _label4,  _label6, _label7, _edit1 ])
         self.show()
 
 class ComboBoxDialog(Dialog):

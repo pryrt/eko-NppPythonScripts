@@ -17,7 +17,7 @@ Checkout the test_win_dialog.py script for examples.
 __all__ = ['Dialog',
            'Button', 'CheckBoxButton', 'GroupBox', 'CommandButton', 'RadioButton', 'SplitButton',
            'SimpleLabel', 'TruncatedLabel', 'BlackFramedLabel', 'CenteredLabel', 'RigthAlignedLabel',
-           'ComboBox'
+           'ComboBox', 'EditBox'
            ]
 __version__ = '0.1'
 __author__ = 'ekopalypse'
@@ -32,6 +32,7 @@ from .win_helper import (
 from .button import Button, CheckBoxButton, GroupBox, CommandButton, RadioButton, SplitButton
 from .label import SimpleLabel, TruncatedLabel, BlackFramedLabel, CenteredLabel, RigthAlignedLabel
 from .combobox import ComboBox
+from .editbox import EditBox
 
 from Npp import notepad
 import ctypes
