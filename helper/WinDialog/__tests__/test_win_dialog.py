@@ -64,7 +64,7 @@ class LabelDialog(Dialog):
         _label6 = CenteredLabel('Centered label', (90, 14), (10, 90))
         _label7 = RigthAlignedLabel('Right alligned label', (90, 14), (10, 110))
         
-        _edit1 = EditBox('Default EditBox', (120,28), (10,130))
+        _edit1 = EditBox('Default EditBox', (120,42), (10,130))
 
         self.add_controls([ _label1, _label2, _label3, _label4,  _label6, _label7, _edit1 ])
         self.show()
@@ -99,7 +99,42 @@ class ComboBoxDialog(Dialog):
         s2 = self.cb2.items[self.cb2.get_selected_item()]
         print(f"selected {s1}.{s2}\n")
 
+class EditDialog(Dialog):
+    def __init__(self, title='test dialog with edit'):
+        super().__init__(title)
+        
+        _edit1 = EditBox('My Initial Text', (120,42), (10,10))
 
-ButtonDialog()
-LabelDialog()
-ComboBoxDialog()
+        _button_ok = Button('Close dialog', (80,22), (10,62))
+        _button_ok.on_click = lambda: self.on_ok(_edit1)
+
+        self.add_controls([ _edit1, _button_ok ])
+        self.show()
+        
+    def on_ok(self, _editbox):
+        # simple way to access the editbox text: pass the editbox reference through the on_click lambda,
+        #   and then use that pass-parameter
+        print(f"OK => editbox:'{_editbox.get_text()}'")
+        
+        # alternate method: the elements of self.control_list are in the order from the .add_controls above,
+        #   the following commented-out code shows me verifying this, and seeing what other meta-info
+        #   #   for c in self.control_list:
+        #   #       print(f"\tctrl.name='{c.name}', ctrl.title='{c.title}', ctrl.windowClass='{c.windowClass}'")
+        #   but now that I know, if I knew that _edit1 was the first element in the self.control_list,
+        #   I could just call self.control_list[0].get_text() directly.
+        #
+        #   side note: c.name and c.title are both set to the initial text that populates
+        #       the control when it's created.  Some day, I might want to add .set_text(str) similar to 
+        #       .get_text() ... but since Eko is actively working on the RC-file-parsing version
+        #       of this library, and his demo implies that it will have EDIT controls,
+        #       it may be moot in the near future anyway.
+        
+        # close the dialog
+        self.terminate()
+        pass
+
+
+#ButtonDialog()
+#LabelDialog()
+#ComboBoxDialog()
+EditDialog()

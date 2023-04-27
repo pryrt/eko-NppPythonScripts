@@ -333,6 +333,9 @@ class WinMessages(IntEnum):
     NOTIFY = 78
     PAINT = 15
     SIZE = 5
+    SETTEXT         = 0x000C
+    GETTEXT         = 0x000D
+    GETTEXTLENGTH   = 0x000E
 
 class ShowWindowCommands(IntEnum):
     HIDE = 0

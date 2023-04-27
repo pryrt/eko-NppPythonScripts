@@ -93,6 +93,7 @@ class ComboBox(Control):
         return SendMessage(self.hwnd, CB.GETCURSEL, 0, 0)
 
     def callback(self, wparam, lparam):
+        h = HIWORD(wparam)
         match HIWORD(wparam):
             case CBN.SELCHANGE:
                 self.on_selchange()
