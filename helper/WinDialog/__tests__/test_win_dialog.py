@@ -147,11 +147,19 @@ class EditDialog(Dialog):
         self.terminate()
         pass
 
-
+class HW(Dialog):
+    def __init__(self, title='MyTitle'):
+        super().__init__(title)
+        _btn = Button("OK", (50,22), (10,10) )
+        _btn.on_click = lambda: self.terminate()
+        self.add_controls([_btn])
+        self.show()
+    
 #ButtonDialog()
 #LabelDialog()
 #ComboBoxDialog()
-EditDialog()
+#EditDialog()
+HW()
 
 """
 Peter's Notes:

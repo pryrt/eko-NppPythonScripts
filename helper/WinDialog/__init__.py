@@ -128,6 +128,7 @@ class Dialog():
 
         _window = dlgwindow + controls
         raw_bytes = (ctypes.c_ubyte * len(_window)).from_buffer_copy(_window)
+        print(f"[DEBUG] __create_dialog():\n\tbytearray: '{_window}'\n\trawbytes: '{raw_bytes}'")
         hinstance = GetModuleHandle(None)
         DialogBoxIndirectParam(hinstance,
                                raw_bytes,
