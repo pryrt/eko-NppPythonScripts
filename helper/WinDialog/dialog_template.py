@@ -30,7 +30,9 @@ class Control:
         self.intialize_needed = False
 
     def create(self):
-        """ create the control template structure """
+        """ create the control template structure 
+            DLGITEMTEMPLATEEX => https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgitemtemplateex
+        """
         self._array += DWORD(self.helpID)
         self._array += DWORD(self.exStyle)
         self._array += DWORD(self.style)
@@ -77,7 +79,9 @@ class Window:
         self.title = name
 
     def create(self):
-        """ create the window template structure """
+        """ create the window template structure
+            DLGTEMPLATEEX  => https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgtemplateex
+        """
         self._array += WORD(self.dlgVer)
         self._array += WORD(self.signature)
         self._array += DWORD(self.helpID)

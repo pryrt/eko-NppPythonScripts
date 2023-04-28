@@ -135,10 +135,13 @@ class EditDialog(Dialog):
         #   I could just call self.control_list[0].get_text() directly.
         #
         #   side note: c.name and c.title are both set to the initial text that populates
-        #       the control when it's created.  Some day, I might want to add .set_text(str) similar to 
+        #       the control when it's created.  Added .set_text(str) similar to 
         #       .get_text() ... but since Eko is actively working on the RC-file-parsing version
         #       of this library, and his demo implies that it will have EDIT controls,
         #       it may be moot in the near future anyway.
+        #       Unfortunately, no matter where I try it, there isn't a place I can put it between the 
+        #       creation of the control and the .show() where I can change the text, so I cannot give
+        #       the control a separate title compared to the initial visible text.
         
         # close the dialog
         self.terminate()
@@ -149,3 +152,18 @@ class EditDialog(Dialog):
 #LabelDialog()
 #ComboBoxDialog()
 EditDialog()
+
+"""
+Peter's Notes:
+- all the win32 calls are done in the .show() method => .__create_dialog() method
+    - defines an  byte array "controls"
+    - for each control, convert the python data into a bytearray (control.create())
+      appends it to the "controls" byte array, and aligns it to a multiple of sizeof(DWORD)
+    - it then creates the Window object in python, 
+        translates it to a bytearrat using .create(),
+        and aligns to DWORD
+    - it combines those two byte arrays into a final bytearray
+    - it calls DialogBoxIndirectParam() on that final bytearray, which actually runs the
+        dialog; that dialog keeps the focus until it is terminated.
+
+"""

@@ -143,6 +143,13 @@ class EditBox(Control):
         self.name = name
         self.size = size
         self.position = position
+        
+    # def create(self):
+    #     super().create()
+    #     self.set_text("peters text")
+    #     #x = self.get_text()
+    #     print(f"[DEBUG] EditBox.create(peters text) => '{self.get_text()}'")
+    #     return self._array
 
     def callback(self, wparam, lparam):
         match HIWORD(wparam):
