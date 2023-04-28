@@ -159,4 +159,12 @@ class EditBox(Control):
         r = SendMessage(self.hwnd, WM.GETTEXT, l+1, lp_ubuf)
         print(f"[DEBUG] EditBox.get_text() => Post Buffer = '{ubuf.value}', r={r}")
         return ubuf.value
+
+    def set_text(self, string):
+        l = len(string)
+        ubuf = ctypes.create_unicode_buffer(string + "\0") # allow length for final NULL character
+        lp_ubuf = ctypes.addressof(ubuf)
+        r = SendMessage(self.hwnd, WM.SETTEXT, l+1, lp_ubuf)
+        print(f"[DEBUG] EditBox.set_text({string}) = '{self.get_text()}'")
+        return self.get_text()
     

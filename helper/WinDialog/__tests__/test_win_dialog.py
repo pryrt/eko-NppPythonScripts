@@ -99,18 +99,29 @@ class ComboBoxDialog(Dialog):
         s2 = self.cb2.items[self.cb2.get_selected_item()]
         print(f"selected {s1}.{s2}\n")
 
+from random import random
+
 class EditDialog(Dialog):
     def __init__(self, title='test dialog with edit'):
         super().__init__(title)
         
         _edit1 = EditBox('My Initial Text', (120,42), (10,10))
+        _edit1.set_text("Yo!")
 
         _button_ok = Button('Close dialog', (80,22), (10,62))
         _button_ok.on_click = lambda: self.on_ok(_edit1)
-
-        self.add_controls([ _edit1, _button_ok ])
-        self.show()
         
+        _button_rnd = Button('Random', (80,22), (10,88))
+        _button_rnd.on_click = lambda: _edit1.set_text(str(random()))
+
+        _button_print = Button('Print Text', (80,22), (10,114))
+        _button_print.on_click = lambda: print("Print Text => '{}'".format(_edit1.get_text()))
+
+        self.add_controls([ _edit1, _button_ok, _button_rnd, _button_print ])
+        _edit1.set_text("Before Show")
+        self.show()
+        _edit1.set_text("After Show")
+
     def on_ok(self, _editbox):
         # simple way to access the editbox text: pass the editbox reference through the on_click lambda,
         #   and then use that pass-parameter
